@@ -15,5 +15,20 @@ function shuffle(tableau) {
   }
 }
 
-shuffle(cards);
-console.log(cards);
+let plateau = document.getElementById('game-board');
+
+function initGame() {
+  shuffle(cards);
+
+  cards.forEach(function(url) {
+    let carte = document.createElement('div');
+    carte.className = 'card';
+    carte.dataset.value = url;
+    carte.setAttribute('role', 'button');
+    carte.setAttribute('tabindex', '0');
+
+    plateau.appendChild(carte);
+  });
+}
+
+initGame();
