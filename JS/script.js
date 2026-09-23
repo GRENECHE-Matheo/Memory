@@ -112,12 +112,19 @@ function verifierPaire() {
     }
   } else {
     setTimeout(function() {
-      premiereCarte.innerHTML = '';
-      deuxiemeCarte.innerHTML = '';
-      premiereCarte = null;
-      deuxiemeCarte = null;
-      bloque = false;
-    }, 800);
+      premiereCarte.classList.add('unflip');
+      deuxiemeCarte.classList.add('unflip');
+
+      setTimeout(function() {
+        premiereCarte.innerHTML = '';
+        deuxiemeCarte.innerHTML = '';
+        premiereCarte.classList.remove('unflip');
+        deuxiemeCarte.classList.remove('unflip');
+        premiereCarte = null;
+        deuxiemeCarte = null;
+        bloque = false;
+      }, 400);
+    }, 600);
   }
 }
 

@@ -1,26 +1,142 @@
 body {
+  background-color: #fff0d8;
   font-family: sans-serif;
   text-align: center;
+  margin: 0;
+  padding: 1em;
+}
+
+#restart-btn {
+  background-color: #34495e;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border-radius: 0.4em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#restart-btn:hover {
+  background-color: #2c3e50;
+  transform: scale(1.05);
+}
+
+#restart-btn:active {
+  transform: scale(0.98);
 }
 
 #game-board {
   display: grid;
-  grid-template-columns: repeat(4, 140px);
-  gap: 10px;
-  justify-content: center;
-  margin: 20px auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  max-width: 36.5em;
+  gap: 0.625em;
+  margin: 1.25em auto;
+  perspective: 50em;
 }
 
 .card {
-  width: 140px;
-  height: 140px;
-  background-color: #34495e;
-  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 1;
+  background-image: url('../assets/carte_dos.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.5em;
+  overflow: hidden;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card.trouve {
+  box-shadow: 0 0 0 0.25em #2ecc71, 0 0 0.6em rgba(46, 204, 113, 0.45);
+  cursor: default;
+}
+
+.card:has(img) {
+  animation: flipCard 0.4s ease;
 }
 
 .card img {
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  display: block;
+  animation: showImg 0.4s ease;
+}
+
+.card.unflip {
+  animation: unflipCard 0.4s ease;
+}
+
+.card.unflip img {
+  animation: hideImg 0.4s ease forwards;
+}
+
+@keyframes flipCard {
+  0% {
+    transform: rotateY(0deg);
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    transform: rotateY(90deg);
+    animation-timing-function: ease-out;
+  }
+
+  50.01% {
+    transform: rotateY(-90deg);
+  }
+
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes unflipCard {
+  0% {
+    transform: rotateY(0deg);
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    transform: rotateY(90deg);
+    animation-timing-function: ease-out;
+  }
+
+  50.01% {
+    transform: rotateY(-90deg);
+  }
+
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes showImg {
+
+  0%,
+  49.9% {
+    opacity: 0;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hideImg {
+
+  0%,
+  49.9% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
