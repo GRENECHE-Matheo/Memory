@@ -66,6 +66,7 @@ function initGame() {
     carte.dataset.value = url;
     carte.setAttribute('role', 'button');
     carte.setAttribute('tabindex', '0');
+    carte.setAttribute('aria-label', 'Carte de jeu');
 
     carte.addEventListener('click', function() {
       clicCarte(carte);
